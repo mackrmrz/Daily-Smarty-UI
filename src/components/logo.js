@@ -5,7 +5,7 @@ const Logo = () => {
 
     return (
         <div>
-            <img src="/assets/logo/dailysmarty.jpg"/>
+            <img src="/assets/logo/ds_circle_logo.png"/>
         </div>
     )
 
