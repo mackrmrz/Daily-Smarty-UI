@@ -10,8 +10,9 @@ export default class App extends Component {
       <div className='app'>
         <h1>Daily Smarty Grid Workout</h1>
         <Logo/>
-        <RecentPosts/>
         <SearchBar/>
+        <RecentPosts/>
+        
       </div>
     );
   }

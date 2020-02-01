@@ -1,19 +1,29 @@
-import React from "react";
+import React, { Component } from "react";
+import {Field, reduxForm } from 'redux-form';
 
-const SearchBar = () => {
-    return (
-        <div className="recent-posts">
-            <div className="recent-posts-wrapper">
-                <div className="recent-posts-heading"> Recent Posts </div>
-                <ul className="recent-posts-posts">
-                    <li>Post number 0</li>
-                    <li>Post number 1</li>
-                    <li>Post number 2</li>
-                    <li>Post number 3</li>
-                </ul>
-            </div>
-        </div>
-    )
+class SearchBar extends Component {
+
+    handleFormSubmit({query}) {
+        console.log("handle the contenent of", query)
+    }
+
+    renderinput(field) {
+        return <input type="text" placeholder="Search DailySmarty"{...field.input}/>
+    };
+
+    render() {
+        const { handleSubmit } = this.props;
+
+        return (
+            <form className="Search-bar" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+                <Field name="query" component={this.renderinput}/>
+            </form>
+        )
+    }
+    
 }
 
+SearchBar = reduxForm({
+    form: "searchBar"
+})(SearchBar);
 export default SearchBar;
