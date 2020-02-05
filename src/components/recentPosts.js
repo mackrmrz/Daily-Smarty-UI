@@ -1,5 +1,8 @@
 import React from "react";
 
+import { connect } from "react-redux";
+
+import * as actions from "../actions";
 
 const RecentPosts = () => {
     return (
@@ -18,4 +21,4 @@ const RecentPosts = () => {
     
 }
 
-export default RecentPosts;
+export default connect(null, actions)(RecentPosts);
