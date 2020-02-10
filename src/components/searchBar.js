@@ -5,10 +5,9 @@ import {withRouter} from "react-router-dom";
 
 class SearchBar extends Component {
 
-    handleFormSubmit({query}) {
-        console.log("handle the contenent of", query);
-        this.props.history.push("./results");
-    }
+   handleFormSubmit(query) {
+    this.props.onSubmit(query);
+   }
 
     renderinput(field) {
         return <input type="text" placeholder="Search DailySmarty"{...field.input}/>

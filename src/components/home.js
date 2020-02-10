@@ -4,15 +4,26 @@ import Logo from "./logo";
 import SearchBar from "./searchBar";
 import RecentPosts from "./recentPosts";
 
-export default class Home extends Component {
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+
+class Home extends Component {
+
+  handleSearchBarSubmit(query) {
+    console.log("Push TO RESULTS",query);
+      this.props.fetchPostsWithQuery(query);
+      this.props.history.push("./results");
+}
   render() {
     return (
       <div className='app'>
-        <h1>Daily Smarty Grid Workout</h1>
+        <h1>Daily Smarty </h1>
         <Logo/>
-        <SearchBar/>
+        <SearchBar onSubmit={(query) => this.handleSearchBarSubmit(query)}/>
         <RecentPosts/>
       </div>
     );
   }
 }
+
+export default connect(null, actions)(Home);

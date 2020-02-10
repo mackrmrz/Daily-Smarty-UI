@@ -1,14 +1,20 @@
-import React from "react";
+import React, { Component } from "react";
 
 
-const Logo = () => {
-
-    return (
-        <div className="logo-main">
-            <img src="/assets/logo/ds_circle_logo.png"/>
-        </div>
-    )
-
+class Logo extends Component{
+    render(){
+        const size = {
+            height: this.props.size ? this.props.size : 105,
+            width: this.props.size ? this.props.size : 105
+        }
+    
+        return (
+            <div className="logo-main">
+                <img style={size} src="/assets/logo/ds_circle_logo.png"/>
+            </div>
+        )
+    
+    }
 }
-
+    
 export default Logo;

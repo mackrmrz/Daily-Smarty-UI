@@ -13,7 +13,7 @@ class Post extends Component {
 
     render() {
         return (
-        <li className="reccent-post"> 
+        <li className="recent-post"> 
             <div className="recent-post-title">
                 {this.props.title} 
             </div>
