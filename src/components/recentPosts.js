@@ -26,9 +26,9 @@ class RecentPosts extends Component {
     render() {
         return (
             <div className="recent-posts">
-                <div className="recent-posts-wrapper">
-                    <div className="recent-posts-heading"> Recent Posts </div>
-                    <ul className="recent-posts-posts">
+                <div className="recent-posts_wrapper">
+                    <div className="recent-posts_heading"> Recent Posts </div>
+                    <ul className="recent-posts_posts">
                        {this.renderPosts()}
                     </ul>
                 </div>

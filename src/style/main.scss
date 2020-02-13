@@ -28,5 +28,7 @@ body {
 
 $color-gray-one: #666666;
 $color-gray-two: #838383;
+$color-blue-one: #0079FF;
 
 @import "./searchBar.scss";
+@import "./recentPosts.scss";
