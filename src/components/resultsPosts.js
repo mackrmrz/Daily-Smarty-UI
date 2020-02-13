@@ -2,15 +2,15 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 import Post from "./post";
-import postsReducer from "../reducers/postsReducer";
+
 
 class ResultsPosts extends Component{
 
     renderPost() {
-        const post = this.props.post.map((post, index) => {
-            return <Post key={index} {...post}/>
+        const posts = this.props.posts.map((post, index) => {
+            return <Post type="result" key={index} {...post}/>
         })
-        return post;
+        return posts;
     }
     render() {
         return (
@@ -28,7 +28,7 @@ class ResultsPosts extends Component{
 
 function mapStateToProps(state) {
     return {
-        post: state.posts.resultsPosts
+        posts: state.posts.resultsPosts
     }
 }
 

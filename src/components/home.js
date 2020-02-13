@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import Logo from "./logo";
-import SearchBar from "./searchBar";
-import RecentPosts from "./recentPosts";
+import Logo from './logo';
+import SearchBar from './searchBar';
+import RecentPosts from './recentPosts';
 
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -10,16 +10,17 @@ import * as actions from '../actions';
 class Home extends Component {
 
   handleSearchBarSubmit(query) {
-    console.log("Push TO RESULTS",query);
-      this.props.fetchPostsWithQuery(query);
-      this.props.history.push("./results");
-}
+      this.props.fetchPostsWithQuery(query, () => {
+        this.props.history.push('/results');
+      });
+
+  }
+
   render() {
     return (
-      <div className='app'>
-        <h1>Daily Smarty </h1>
+      <div className="home">
         <Logo/>
-        <SearchBar onSubmit={(query) => this.handleSearchBarSubmit(query)}/>
+        <SearchBar page="home" onSubmit={(query) => this.handleSearchBarSubmit(query)}/>
         <RecentPosts/>
       </div>
     );
