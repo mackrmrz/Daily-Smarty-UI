@@ -10,6 +10,7 @@ class Post extends Component {
         }
     }
 
+
     renderTopics() {
         let topics = this.props.associated_topics.map((topic, index) => {
             return <span className="post-topic" key={index}>{topic}</span>
@@ -17,17 +18,41 @@ class Post extends Component {
         return topics;
     }
 
+    getNameForPostLink(str) {
+        var n = str.lastIndexOf("/");
+        var link = str.substring(n + 1, str.length);
+
+        if((n + 1) == str.length) {
+            link = str.slice(0, n);
+            n = link.lastIndexOf('/');
+            link = str.substring( n + 1, str.length - 1);
+        }
+
+        if(link.includes('.html')) {
+            link = link.substring(0, link.length -5);
+        }
+
+        if(link.includes('.htm')) {
+            link =  link.sunstring(0, link.length -4);
+        }
+
+        return link;
+    }
+
     renderLinks() {
         let links = this.props.post_links.map((post_link, index) => {
             return (
                 <div className="post-link" key={index}>
-                    <div className="post-link__box"></div>
-                    <div className="post-link__link">
-                        <a href={post_link.link_url}>Useful Link #{index + 1}</a>
+                    <div className="post-link_box"></div>
+                    <div className="post-link_link">
+                        <a href={post_link.link_url}>{this.getNameForPostLink(post_link.link_url)}</a>
                     </div>
                 </div>
             )
         })
+        if(links == 0) {
+            return <div className="no-link">No Post Link</div>
+        }
         return links;
     }
 
@@ -35,38 +60,38 @@ class Post extends Component {
         if(this.props.type == 'recent') {
             return (
                 <li className="recent-post">
-                    <div className="recent-post__title">
+                    <div className="recent-post_title">
                         {this.props.title}
                     </div>
-                    <div className="recent-post__topics">
+                    <div className="recent-post_topics">
                         {this.renderTopics()}
                     </div>
                 </li>
             )
         } else if(this.props.type == 'result') {
             return (
-                <li className="result-post">
-                    <div className="result-post__topics">
+                <li className="result-post"
+                    onMouseEnter={() => this.setState({ height: 70})}
+                    onMouseLeave={() => this.setState({ height: 0})}
+                >
+                    <div className="result-post_topics">
                         {this.renderTopics()}
                     </div>
-                    <div className="result-post__title">
-                        <a href={this.props.url_for_post}
-                            onMouseEnter={() => this.setState({ height: 70})}
-                            onMouseLeave={() => this.setState({ height: 0})}>
+                    <div className="result-post_title">
+                        <a href={this.props.url_for_post}>
                             {this.props.title}
                         </a>
                     </div>
                     <AnimateHeight
                         duration={500}
                         height={this.state.height}>
-                            <div className="result-post__links">
+                            <div className="results-post_links">
                                 {this.renderLinks()}
                             </div>
                     </AnimateHeight>
                 </li>
             )
         }
-
     }
 }
 
